@@ -20,7 +20,7 @@ namespace WinFormsAppWeather
 
             sqlite_conn.Open();
 
-            adapter = new SQLiteDataAdapter("SELECT date, time, temp, weather_main FROM cherkasy", sqlite_conn);
+            //adapter = new SQLiteDataAdapter("SELECT date, time, temp, weather_main FROM cherkasy", sqlite_conn);
 
             table = new DataTable();
 
