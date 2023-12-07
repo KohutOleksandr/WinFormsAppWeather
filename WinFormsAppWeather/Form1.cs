@@ -11,7 +11,7 @@ namespace WinFormsAppWeather
         public Form1()
         {
             InitializeComponent();
-            this.BackColor = Color.Red;
+            this.BackColor = Color.Blue;
         }
 
         private void Form1_Load(object sender, EventArgs e)
