@@ -5,12 +5,13 @@ namespace WinFormsAppWeather
 {
     public partial class Form1 : Form
     {
-        private DataTable table = null;
-        private SQLiteDataAdapter adapter = null;
-        private SQLiteConnection sqlite_conn = null;
+        private DataTable table;
+        private SQLiteDataAdapter adapter;
+        private SQLiteConnection sqlite_conn;
         public Form1()
         {
             InitializeComponent();
+            this.BackColor = Color.Red;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -20,13 +21,8 @@ namespace WinFormsAppWeather
 
             sqlite_conn.Open();
 
-            //adapter = new SQLiteDataAdapter("SELECT date, time, temp, weather_main FROM cherkasy", sqlite_conn);
-
             table = new DataTable();
-
-            //adapter.Fill(table);
-
-            //dataGridView1.DataSource = table;
+            sqlite_conn.Close();
         }
 
 
@@ -34,31 +30,28 @@ namespace WinFormsAppWeather
         {
 
         }
-
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            table.Clear();
-            adapter = new SQLiteDataAdapter("SELECT date, time, temp, weather_main FROM cherkasy", sqlite_conn);
-            adapter.Fill(table);
-            dataGridView1.DataSource = table;
-            sqlite_conn.Close();
+            UpdateDataGridView("SELECT date, time, temp, pressure, weather_main FROM cherkasy");
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            table.Clear();
             string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
-            adapter = new SQLiteDataAdapter($"SELECT date, time, temp, weather_main FROM cherkasy WHERE date == \"{currentDate}\"", sqlite_conn);
-            adapter.Fill(table);
-            dataGridView1.DataSource = table;
-            sqlite_conn.Close();
+            UpdateDataGridView($"SELECT date, time, temp, pressure, weather_main FROM cherkasy WHERE date == \"{currentDate}\"");
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            table.Clear();
             string currentDate = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
-            adapter = new SQLiteDataAdapter($"SELECT date, time, temp, weather_main FROM cherkasy WHERE date == \"{currentDate}\"", sqlite_conn);
+            UpdateDataGridView($"SELECT date, time, temp, pressure, weather_main FROM cherkasy WHERE date == \"{currentDate}\"");
+        }
+
+
+        private void UpdateDataGridView(string query)
+        {
+            table.Clear();
+            adapter = new SQLiteDataAdapter(query, sqlite_conn);
             adapter.Fill(table);
             dataGridView1.DataSource = table;
             sqlite_conn.Close();

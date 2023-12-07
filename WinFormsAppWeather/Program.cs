@@ -10,7 +10,7 @@ namespace WinFormsAppWeather
     public class Program
     {
         private static readonly HttpClient client = new HttpClient();
-        private static string url = $"https://api.openweathermap.org/data/2.5/forecast?appid={tokenAPI.getToken()}&q=Cherkasy&cnt=5&units=metric";
+        private static string url = $"https://api.openweathermap.org/data/2.5/forecast?appid={tokenAPI.getToken()}&q=Cherkasy&cnt=10&units=metric";
         
         [STAThread]
         async static Task Main(string[] args)
@@ -23,7 +23,6 @@ namespace WinFormsAppWeather
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
 
-            //ReadWeatherData(sqlite_conn);
             sqlite_conn.Close();
         }
 
@@ -115,51 +114,6 @@ namespace WinFormsAppWeather
 
         }
 
-        //static void ReadWeatherData(SQLiteConnection conn)
-        //{
-
-        //    SQLiteCommand sqlite_cmd;
-
-        //    Console.WriteLine("Enter date(YYYY-MM-DD)");
-
-        //    string date = Console.ReadLine();
-        //    string Createsql = $"SELECT date, time, temp, weather_main FROM cherkasy WHERE date == \"{date}\"";
-
-        //    sqlite_cmd = conn.CreateCommand();
-        //    sqlite_cmd.CommandText = Createsql;
-        //    PrintResult(sqlite_cmd);
-        //    //sqlite_cmd.ExecuteNonQuery();
-
-        //}
-
-        //static void PrintResult(SQLiteCommand sqlite_cmd)
-        //{
-        //    SQLiteDataReader sqlite_datareader = sqlite_cmd.ExecuteReader();
-
-        //    if (sqlite_datareader.HasRows)
-        //    {
-        //        for (int i = 0; i < sqlite_datareader.FieldCount; i++)
-        //        {
-        //            string columnName = sqlite_datareader.GetName(i);
-        //            Console.Write($"{columnName,+7}  ");
-        //        }
-        //        Console.WriteLine();
-
-        //        while (sqlite_datareader.Read())
-        //        {
-        //            for (int i = 0; i < sqlite_datareader.FieldCount; i++)
-        //            {
-        //                var myreader = sqlite_datareader.GetValue(i);
-        //                Console.Write($"{myreader,+9}");
-        //            }
-        //            Console.WriteLine("\n");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Data not found!");
-        //    }
-
-        //}
+        
     }
 }
