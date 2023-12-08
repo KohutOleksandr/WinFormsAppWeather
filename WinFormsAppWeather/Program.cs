@@ -4,13 +4,14 @@ using System.Data.SQLite;
 using System.Reflection.PortableExecutable;
 using System.Xml.Linq;
 using System.Runtime.ConstrainedExecution;
+using System.Diagnostics;
 
 namespace WinFormsAppWeather
 {
     public class Program
     {
         private static readonly HttpClient client = new HttpClient();
-        private static string url = $"https://api.openweathermap.org/data/2.5/forecast?appid={tokenAPI.getToken()}&q=Cherkasy&cnt=10&units=metric";
+        private static string url = $"https://api.openweathermap.org/data/2.5/forecast?appid={tokenAPI.getToken()}&q=Cherkasy&cnt=20&units=metric";
         
         [STAThread]
         async static Task Main(string[] args)

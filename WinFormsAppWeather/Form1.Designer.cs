@@ -38,6 +38,7 @@
             toolStripButton3 = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             toolStripButton1 = new ToolStripButton();
+            dateTimePicker1 = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             toolStrip1.SuspendLayout();
             SuspendLayout();
@@ -50,7 +51,7 @@
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.BackgroundColor = Color.YellowGreen;
+            dataGridView1.BackgroundColor = Color.Silver;
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -62,26 +63,28 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.GridColor = SystemColors.Window;
-            dataGridView1.Location = new Point(0, 32);
+            dataGridView1.Location = new Point(0, 55);
             dataGridView1.Margin = new Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RightToLeft = RightToLeft.No;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1000, 486);
+            dataGridView1.Size = new Size(1000, 463);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // toolStrip1
             // 
+            toolStrip1.Dock = DockStyle.None;
             toolStrip1.ImageScalingSize = new Size(20, 20);
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton2, toolStripSeparator1, toolStripButton3, toolStripSeparator2, toolStripButton1 });
-            toolStrip1.Location = new Point(0, 0);
+            toolStrip1.Location = new Point(172, 9);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Padding = new Padding(10, 0, 10, 0);
-            toolStrip1.Size = new Size(1000, 32);
+            toolStrip1.Size = new Size(512, 32);
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
+            toolStrip1.ItemClicked += toolStrip1_ItemClicked;
             // 
             // toolStripButton2
             // 
@@ -93,8 +96,8 @@
             toolStripButton2.Margin = new Padding(1, 1, 1, 2);
             toolStripButton2.Name = "toolStripButton2";
             toolStripButton2.Padding = new Padding(1);
-            toolStripButton2.Size = new Size(144, 29);
-            toolStripButton2.Text = "Current Weather";
+            toolStripButton2.Size = new Size(174, 29);
+            toolStripButton2.Text = "CurrentDay Weather";
             toolStripButton2.Click += toolStripButton2_Click;
             // 
             // toolStripSeparator1
@@ -131,12 +134,21 @@
             toolStripButton1.Text = "Weather Archive";
             toolStripButton1.Click += toolStripButton1_Click;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(738, 9);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 30);
+            dateTimePicker1.TabIndex = 3;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1000, 518);
+            Controls.Add(dateTimePicker1);
             Controls.Add(toolStrip1);
             Controls.Add(dataGridView1);
             Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
@@ -162,5 +174,6 @@
         private ToolStripButton toolStripButton3;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripSeparator toolStripSeparator2;
+        private DateTimePicker dateTimePicker1;
     }
 }
