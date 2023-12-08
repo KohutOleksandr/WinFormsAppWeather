@@ -39,8 +39,10 @@
             toolStripSeparator2 = new ToolStripSeparator();
             toolStripButton1 = new ToolStripButton();
             dateTimePicker1 = new DateTimePicker();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -63,13 +65,13 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.GridColor = SystemColors.Window;
-            dataGridView1.Location = new Point(0, 55);
+            dataGridView1.Location = new Point(0, 45);
             dataGridView1.Margin = new Padding(4, 3, 4, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RightToLeft = RightToLeft.No;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1000, 463);
+            dataGridView1.Size = new Size(998, 370);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -136,18 +138,31 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(738, 9);
+            dateTimePicker1.Location = new Point(710, 9);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(250, 30);
             dateTimePicker1.TabIndex = 3;
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = SystemColors.ButtonHighlight;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(710, 67);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(250, 260);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1000, 518);
+            ClientSize = new Size(1000, 459);
+            Controls.Add(pictureBox1);
             Controls.Add(dateTimePicker1);
             Controls.Add(toolStrip1);
             Controls.Add(dataGridView1);
@@ -162,6 +177,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -175,5 +191,6 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripSeparator toolStripSeparator2;
         private DateTimePicker dateTimePicker1;
+        private PictureBox pictureBox1;
     }
 }

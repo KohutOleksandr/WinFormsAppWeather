@@ -1,6 +1,8 @@
 using System.Data.SQLite;
 using System.Data;
 using System.Diagnostics;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.IO;
 
 namespace WinFormsAppWeather
 {
@@ -55,6 +57,19 @@ namespace WinFormsAppWeather
             UpdateButtonsColor(Color.LightSeaGreen, SystemColors.Control, SystemColors.Control, sender);
         }
 
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            string currentDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+            UpdateDataGridView($"SELECT date, time, temp, pressure, weather_main FROM cherkasy WHERE date == \"{currentDate}\"");
+            toolStripButton1.BackColor = SystemColors.Control;
+            toolStripButton2.BackColor = SystemColors.Control;
+            toolStripButton3.BackColor = SystemColors.Control;
+        }
 
         private void UpdateDataGridView(string query)
         {
@@ -62,6 +77,15 @@ namespace WinFormsAppWeather
             adapter = new SQLiteDataAdapter(query, sqlite_conn);
             adapter.Fill(table);
             dataGridView1.DataSource = table;
+            try
+            {
+                string weather = dataGridView1[dataGridView1.Columns.Count - 1, (dataGridView1.Rows.Count - 1) / 2].Value.ToString();
+                ChangeWeatherImage(weather);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Data not found. Try to choose other date.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             sqlite_conn.Close();
         }
 
@@ -74,6 +98,18 @@ namespace WinFormsAppWeather
                 toolStripButton3.BackColor = defaultColor2;
             }
             (sender as ToolStripButton).BackColor = selectedColor;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChangeWeatherImage(string weather)
+        {
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Image");
+            string imagePath = Path.Combine(basePath, $"{weather.ToLower()}.png");
+            pictureBox1.Image = Image.FromFile(imagePath);
         }
 
         //private void toolStripLabel1_Click(object sender, EventArgs e)
@@ -93,18 +129,6 @@ namespace WinFormsAppWeather
         //    }
         //}
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
 
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            string currentDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-            UpdateDataGridView($"SELECT date, time, temp, pressure, weather_main FROM cherkasy WHERE date == \"{currentDate}\"");
-            toolStripButton1.BackColor = SystemColors.Control;
-            toolStripButton2.BackColor = SystemColors.Control;
-            toolStripButton3.BackColor = SystemColors.Control;
-        }
     }
 }
