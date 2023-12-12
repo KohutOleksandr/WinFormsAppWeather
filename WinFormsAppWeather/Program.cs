@@ -91,7 +91,7 @@ namespace WinFormsAppWeather
                 string[] dateTimeParts = Convert.ToString(weatherInfo?.dt_txt).Split(' ');
                 cherkasy["date"] = dateTimeParts[0];
                 cherkasy["time"] = dateTimeParts[1];
-                cherkasy["temp"] = Convert.ToString(weatherInfo?.main?.temp).Replace(',', '.');
+                cherkasy["temp"] = Convert.ToString(Math.Round((double)(weatherInfo?.main?.temp))).Replace(',', '.');
                 cherkasy["pressure"] = Convert.ToString(weatherInfo?.main?.pressure);
                 cherkasy["wind_speed"] = Convert.ToString(weatherInfo?.wind?.speed).Replace(',', '.');
 
